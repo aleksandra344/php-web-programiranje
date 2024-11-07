@@ -98,3 +98,39 @@
 
 </body>
 </html>
+
+
+
+
+<?php
+date_default_timezone_set('Europe/Zagreb');
+
+// Dohvaćanje trenutnog dana i vremena
+$trenutniDan = date("l"); 
+$trenutnoVrijeme = date("H"); 
+
+function provjeriRadnoVrijeme($dan, $vrijeme) {
+    if ($dan == "Sunday") {
+        return "Dućan je zatvoren.";
+    } 
+    elseif ($dan == "Saturday") {
+        if ($vrijeme >= 9 && $vrijeme < 14) {
+            return "Dućan je otvoren.";
+        } else {
+            return "Dućan je zatvoren. Radno vrijeme subotom je od 9 do 14.";
+        }
+    } 
+    else {
+        if ($vrijeme >= 8 && $vrijeme < 20) {
+            return "Dućan je otvoren.";
+        } else {
+            return "Dućan je zatvoren. Radno vrijeme je od 8 do 20.";
+        }
+    }
+}
+
+$status = provjeriRadnoVrijeme($trenutniDan, $trenutnoVrijeme);
+echo $status;
+?>
+
+
