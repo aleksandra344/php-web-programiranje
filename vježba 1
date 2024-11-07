@@ -1,3 +1,16 @@
+-----  Napravite dokument u HTML formatu u kojem ćete napraviti ispis slijedećeg 
+teksta. PHP blok počinje na početku dokumenta prije deklaracije!
+ • NASLOV: Da Vincijev kod
+ • TEKST: Da Vincijev kod je kriminalistički triler američkog pisca Dana Browna.
+ • POVEZNICA (otvara se u novom prozoru): 
+https://hr.wikipedia.org/Da_Vincijev_kod
+ • Postavite META elemente za responzivnost stranice, opis i ključne riječi, te NASLOV
+ dokumenta Da Vincijev kod
+ • Napišite na kraju ime vašeg dokumenta koji će biti u komentaru
+
+
+
+
 <?php
 
 $title = "Da Vincijev kod";
