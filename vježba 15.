@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tražilica korisnika</title>
+</head>
+<body>
+    <h1>Pretraživanje korisnika</h1>
+    <form action="search.php" method="post">
+        <label for="search">Unesite ime ili prezime:</label>
+        <input type="text" id="search" name="search" required>
+        <button type="submit">Pretraži</button>
+    </form>
+</body>
+</html>
+
+
+<div class="container">
+	<h1>SELECT korisnika &rsaquo; DML </h1>
+	<?php 
+    $MySQL = mysqli_connect("localhost","root","","test3") or die('Error connecting to MySQL server.');
+
+    print '<h2>Users</h2>
+        <ul>
+            <li><a href="index.php?menu=1">SELECT ALL</a></li>
+            <li><a href="index.php?menu=2">SELECT ALL &rsaquo; ORDER DESC firstname</a></li>
+            <li><a href="index.php?menu=3">SELECT ALL &rsaquo; ORDER ASC lastname</a></li>
+            <li><a href="index.php?menu=4">SELECT &rsaquo; WHERE lastname Doe</a></li>
+            <li><a href="index.php?menu=5">SELECT &rsaquo; LIMIT 10</a></li>
+            <li><a href="index.php?menu=6">SELECT &rsaquo; COMBINE ORDER ASC lastname AND LIMIT 15</a></li>
+        </ul>
+        <hr style="border-bottom:1px solid grey">';
+
+        if (!isset($_GET['menu']) || $_GET['menu'] == 1) {
+            $query  = "SELECT * FROM users";
+        }
+        else if ($_GET['menu'] == 2) {
+            $query  = "SELECT * FROM users ORDER BY user_firstname DESC";
+        }
+        else if ($_GET['menu'] == 3) {
+            $query  = "SELECT * FROM users ORDER BY user_lastname ASC";
+        }
+        else if ($_GET['menu'] == 4) {
+            $query  = "SELECT * FROM users WHERE user_lastname='Doe'";
+        }
+        else if ($_GET['menu'] == 5) {
+            $query  = "SELECT * FROM users LIMIT 10";
+        }
+        else if ($_GET['menu'] == 6) {
+            $query  = "SELECT * FROM users ORDER BY user_lastname ASC LIMIT 15";
+        }
+
+        $result = @mysqli_query($MySQL, $query);
+        while($row = @mysqli_fetch_array($result)) {
+            print "<p><i class='bi bi-person'></i> ". $row['user_firstname'] . " <span style='color:green'>" . $row['user_lastname'] . "</span></p>";
+        }
+	   
+	 ?>
+</div>
+</body>
+</html>
